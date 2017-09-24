@@ -1,0 +1,21 @@
+{
+  "name": "limberdb",
+  "version": "0.0.1",
+  "description": "Setup DB for Limber",
+  "main": "index.js",
+  "start": "nodemon server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Soumitra Kar",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "mongoose": "^4.11.10",
+    "node-windows": "^0.1.14"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.0"
+  }
+}
