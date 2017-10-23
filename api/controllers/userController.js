@@ -29,6 +29,20 @@ exports.add_project_to_user = function(req, res) {
 })
 };
 
+exports.remove_project_from_user = function(req, res) {
+  User.findByIdAndUpdate(req.body.user_id, {
+    $pull: {
+      projects: req.body.project_id
+    },
+  }, {
+    new: true
+  }, function(err, data) {
+      if (err)
+        res.send(err);
+      res.json(data);
+  })
+};
+
 
 exports.add_an_user = function(req, res) {
   var new_user = new User(req.body);

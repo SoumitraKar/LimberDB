@@ -13,9 +13,9 @@ var mongoose = require('mongoose'),
     })
   };
 
-  exports.get_project_details_by_name = function(req, res) {
+  exports.get_project_details_by_id = function(req, res) {
     console.log(req.body);
-    Project.find({name : req.body.name}, function(err, project) {
+    Project.find({_id : req.body.id}, function(err, project) {
       if (err)
         res.send(err);
       res.json(project);
@@ -30,39 +30,44 @@ var mongoose = require('mongoose'),
                 function(err, project) {
                 if (err)
                   res.send(err);
-                res.json(project);
+                res.send(project);
     })
     .populate("ScrumMaster", "first_name last_name initials email_id")
     .populate("memberList", "first_name last_name initials email_id")
   };
 
-  exports.add_project = function(req, res) {
-    var new_project = new Project(req.body);
-    //set initials
-    console.log(new_project);
-    console.log(JSON.stringify(new_project));
-    new_project.save(function(err, project) {
-      console.log(err);
-      console.log("\n\n\n");
-        console.log(project);
-      if (err)
-        res.send(err);
-      res.json(project);
-    });
-  };
-
   exports.add_user_to_project = function(req, res) {
-    Project.findByIdAndUpdate(req.body.project_id, {
-    $push: {
-      memberList: req.body.user_id
-    },
-  }, {
-    new: true
-  }, function(err, data) {
+    Project.findOneAndUpdate({_id : req.body.project_id}, {
+      $push: {
+        memberList: req.body.user_id
+      }
+    }, {
+      new: true
+    })
+    .populate("ScrumMaster", "first_name last_name initials email_id")
+    .populate("memberList", "first_name last_name initials email_id")
+    .exec(function(err,data) {
       if (err)
         res.send(err);
       res.json(data);
-  })
+    })
+  };
+
+  exports.remove_user_from_project = function(req, res) {
+    Project.findByIdAndUpdate(req.body.project_id, {
+      $pull: {
+        memberList: req.body.user_id
+      },
+    }, {
+      new: true
+    })
+    .populate("ScrumMaster", "first_name last_name initials email_id")
+    .populate("memberList", "first_name last_name initials email_id")
+    .exec(function(err,data) {
+      if (err)
+        res.send(err);
+      res.json(data);
+    })
   };
 
   exports.delete_a_project = function(req, res) {
@@ -74,3 +79,18 @@ var mongoose = require('mongoose'),
       res.json({ message: 'Project successfully deleted' });
     });
   };
+
+    exports.add_project = function(req, res) {
+      var new_project = new Project(req.body);
+      //set initials
+      console.log(new_project);
+      console.log(JSON.stringify(new_project));
+      new_project.save(function(err, project) {
+        console.log(err);
+        console.log("\n\n\n");
+          console.log(project);
+        if (err)
+          res.send(err);
+        res.json(project);
+      });
+    };

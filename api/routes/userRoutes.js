@@ -15,6 +15,8 @@ module.exports = function(app) {
     .post(user.delete_an_user);
   app.route('/add_project_to_user')
     .post(user.add_project_to_user);
+  app.route('/remove_project_from_user')
+    .post(user.remove_project_from_user);
     /**
   app.route('/add_users_based_on_sprint')
     .post(user.add_users_based_on_sprint)

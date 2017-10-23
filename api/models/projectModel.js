@@ -29,11 +29,13 @@ var ProjectSchema = new Schema({
   ScrumMaster: [{
     type: Schema.Types.ObjectId,
     ref: 'User',
+    unique: true,
     required: 'Please enter ScrumMaster'
   }],
   memberList: [{
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    unique: true
   }],
   release: [ReleaseSchema]
 });
