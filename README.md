@@ -1,4 +1,12 @@
-# LIMBER DB ROUTES
+# DATABASE ROUTES FOR LIMBER PROJECT
+
+Limber is a agile management app. Used to plan and follow through your project using agile rules.
+This is one half of limber project. This only considers the backend and routes of the project. 
+
+The link for UI of Limber : https://github.com/SoumitraKar/LimberUI
+
+_________________________________________________________
+## LIMBER DB ROUTES
 ### User Routes
 1. ##### add_an_user - POST
 ```sh
