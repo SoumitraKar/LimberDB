@@ -1,7 +1,8 @@
 'use strict';
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema,
-  user = require('./userModel');
+  user = require('./userModel'),
+  sprint = require('./sprintModel');
 var ReleaseSchema = new Schema({
   name: String,
   description: String,
@@ -9,11 +10,7 @@ var ReleaseSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  releaseDate: Date,
-  sprints: [{
-    type: Schema.ObjectId,
-    ref: 'Sprint'
-  }]
+  releaseDate: Date
 });
 
 var ProjectSchema = new Schema({
@@ -26,12 +23,11 @@ var ProjectSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  ScrumMaster: [{
+  ScrumMaster: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-    unique: true,
     required: 'Please enter ScrumMaster'
-  }],
+  },
   memberList: [{
     type: Schema.Types.ObjectId,
     ref: 'User',

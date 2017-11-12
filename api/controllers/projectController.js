@@ -1,6 +1,4 @@
 'use strict';
-
-
 var mongoose = require('mongoose'),
   Project = mongoose.model('Project'),
   user = require('../controllers/userController');

@@ -1,7 +1,8 @@
 # DATABASE ROUTES FOR LIMBER PROJECT
 
 Limber is a agile management app. Used to plan and follow through your project using agile rules.
-This is one half of limber project. This only considers the backend and routes of the project. 
+This is one half of limber project. This only considers the backend and routes of the project.
+For full project download the LimberUI project as well and run.
 
 The link for UI of Limber : https://github.com/SoumitraKar/LimberUI
 

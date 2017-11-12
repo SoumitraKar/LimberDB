@@ -18,14 +18,8 @@ module.exports = function(app) {
   app.route('/remove_project_from_user')
     .post(user.remove_project_from_user);
     /**
-  app.route('/add_users_based_on_sprint')
-    .post(user.add_users_based_on_sprint)
   app.route('/delete_user')
     .post(user.delete_user)
-  app.route('/add_user_to_project')
-    .post(user.add_user_to_project)
-  app.route('/add_user_to_sprint')
-    .post(user.add_user_to_sprint)
   app.route('/add_user_to_story')
     .post(user.add_user_to_story)
   app.route('/add_user_to_task')
